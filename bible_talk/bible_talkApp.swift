@@ -11,7 +11,7 @@ import SwiftUI
 struct bible_talkApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EditionView()
         }
     }
 }

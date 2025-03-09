@@ -8,14 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let verses: [Verse] = Bundle.main.decode("verses.json")
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationStack{
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text("Verse of the day")
+                Text("Pick a verse for me")
+                Text("Verse by topic")
+            }
+            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem (placement: .navigationBarLeading){
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(.black)
+                    }
+                }
+                ToolbarItem (placement: .principal) {
+                    Text("BEE BYTES")
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .foregroundStyle(.primary)
+                }
+                ToolbarItem (placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    }label: {
+                        Text("Edition")
+                            .foregroundStyle(.black)
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
