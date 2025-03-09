@@ -10,17 +10,51 @@ import SwiftUI
 struct ContentView: View {
     
     let verses: [Verse] = Bundle.main.decode("verses.json")
+   
+    
+   
     
     var body: some View {
         
         NavigationStack{
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
+                Section{
+                    if let randomVerse = randomVerse() {
+                        VStack {
+                            
+                            HStack {
+                                Text("verse of the day")
+                                Spacer()
+                            }
+                               
+                            Text(randomVerse.verse)
+                            NavigationLink {
+                                TodaysVerse()
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text("Read more...")
+                                }
+                            }
+                        }
+                        .padding()
+                       
+                    } else {
+                        Text("Loading...")
+                    }
+                }
+                
+                .background(.yellow)
+                .cornerRadius(10)
+               
+                
+               
+                ForEach(verses){ verse in
+                    Text(verse.verse)}
                 Text("Verse of the day")
                 Text("Pick a verse for me")
                 Text("Verse by topic")
+                
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
@@ -49,6 +83,10 @@ struct ContentView: View {
                 }
             }
         }
+    }
+    
+    func randomVerse() -> Verse? {
+        return verses.randomElement()
     }
 }
 
